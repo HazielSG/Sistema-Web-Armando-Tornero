@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<!--
+    Proyecto      : Sistema Web de Ventas e Inventario - Bodega Armando Tornero
+    Archivo       : productos.html
+    Descripcion   : Gestion del catalogo de productos: registrar, consultar, actualizar y desactivar productos.
+    Autor         : Juan Cesar Retuerto Ibanez
+    Creado por    : Juan Cesar Retuerto Ibanez
+    Ultima modificacion : Juan Cesar Retuerto Ibanez
+-->
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Juan Cesar Retuerto Ibanez">
+    <meta name="description" content="Gestion del catalogo de productos: registrar, consultar, actualizar y desactivar productos.">
+    <title>Gestion de productos - Bodega Armando Tornero</title>
+    <link rel="stylesheet" href="../css/estilos.css">
+</head>
+<body>
+<div class="contenedor">
+    <aside class="barra-lateral"></aside>
+    <main class="contenido">
+        <div class="encabezado">
+            <div>
+                <h1>Gestion de productos</h1>
+                <p>Registro, consulta, actualizacion y baja de productos del catalogo</p>
+            </div>
+            <div class="acciones" style="margin-top:0;"></div>
+        </div>
+
+        <div class="mensaje" id="mensaje"></div>
+
+        <div class="tarjeta">
+            <h2 id="tituloFormulario">Registrar producto</h2>
+            <form id="formProducto" class="formulario" autocomplete="off">
+                <input type="hidden" id="idProducto">
+                <div class="campo">
+                    <label for="codigo">Codigo *</label>
+                    <input type="text" id="codigo" maxlength="30" required>
+                </div>
+                <div class="campo">
+                    <label for="nombre">Nombre del producto *</label>
+                    <input type="text" id="nombre" maxlength="150" required>
+                </div>
+                <div class="campo">
+                    <label for="idCategoria">Categoria *</label>
+                    <select id="idCategoria" required></select>
+                </div>
+                <div class="campo">
+                    <label for="idProveedor">Proveedor</label>
+                    <select id="idProveedor"><option value="">Sin proveedor</option></select>
+                </div>
+                <div class="campo">
+                    <label for="unidadMedida">Unidad de medida</label>
+                    <select id="unidadMedida">
+                        <option value="UNIDAD">Unidad</option>
+                        <option value="PAQUETE">Paquete</option>
+                        <option value="BOLSA">Bolsa</option>
+                        <option value="CAJA">Caja</option>
+                        <option value="KILOGRAMO">Kilogramo</option>
+                        <option value="LITRO">Litro</option>
+                    </select>
+                </div>
+                <div class="campo">
+                    <label for="precioCompra">Precio de compra (S/) *</label>
+                    <input type="number" id="precioCompra" step="0.01" min="0" value="0.00" required>
+                </div>
+                <div class="campo">
+                    <label for="precioVenta">Precio de venta (S/) *</label>
+                    <input type="number" id="precioVenta" step="0.01" min="0.01" required>
+                </div>
+                <div class="campo">
+                    <label for="stockMinimo">Stock minimo *</label>
+                    <input type="number" id="stockMinimo" min="0" value="0" required>
+                </div>
+                <div class="campo" id="campoStockInicial">
+                    <label for="stockInicial">Stock inicial</label>
+                    <input type="number" id="stockInicial" min="0" value="0">
+                </div>
+                <div class="campo completo">
+                    <label for="descripcion">Descripcion</label>
+                    <input type="text" id="descripcion" maxlength="255">
+                </div>
+                <div class="acciones completo">
+                    <button type="submit" id="btnGuardar">Guardar producto</button>
+                    <button type="button" class="secundario" id="btnCancelar">Limpiar formulario</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="tarjeta">
+            <h2>Catalogo de productos</h2>
+            <div class="filtros" style="margin-bottom:16px;">
+                <div class="campo">
+                    <label for="buscar">Buscar por codigo o nombre</label>
+                    <input type="text" id="buscar" placeholder="Ej.: PRD-0001 o arroz">
+                </div>
+                <button type="button" id="btnBuscar">Buscar</button>
+                <button type="button" class="secundario" id="btnLimpiarBusqueda">Ver todos</button>
+            </div>
+            <div class="tabla-scroll">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Codigo</th><th>Producto</th><th>Categoria</th>
+                            <th class="numero">P. venta</th>
+                            <th class="numero">Stock</th>
+                            <th class="numero">Minimo</th>
+                            <th class="centro">Estado</th>
+                            <th class="centro">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tablaProductos"></tbody>
+                </table>
+            </div>
+        </div>
+
+    </main>
+</div>
+<script src="../js/api.js"></script>
+<script src="../js/app.js"></script>
+<script src="../js/productos.js"></script>
+</body>
+</html>

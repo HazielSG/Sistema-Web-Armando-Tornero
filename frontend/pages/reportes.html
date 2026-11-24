@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<!--
+    Proyecto      : Sistema Web de Ventas e Inventario - Bodega Armando Tornero
+    Archivo       : reportes.html
+    Descripcion   : Reportes de ventas, productos mas vendidos e inventario con exportacion a CSV.
+    Autor         : Juan Cesar Retuerto Ibanez
+    Creado por    : Juan Cesar Retuerto Ibanez
+    Ultima modificacion : Juan Cesar Retuerto Ibanez
+-->
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Juan Cesar Retuerto Ibanez">
+    <meta name="description" content="Reportes de ventas, productos mas vendidos e inventario con exportacion a CSV.">
+    <title>Reportes - Bodega Armando Tornero</title>
+    <link rel="stylesheet" href="../css/estilos.css">
+</head>
+<body>
+<div class="contenedor">
+    <aside class="barra-lateral"></aside>
+    <main class="contenido">
+        <div class="encabezado">
+            <div>
+                <h1>Reportes</h1>
+                <p>Reportes de ventas, productos mas vendidos e inventario, con exportacion a CSV</p>
+            </div>
+            <div class="acciones" style="margin-top:0;"></div>
+        </div>
+
+        <div class="mensaje" id="mensaje"></div>
+
+        <div class="tarjeta">
+            <h2>Periodo del reporte</h2>
+            <div class="filtros">
+                <div class="campo">
+                    <label for="desde">Desde</label>
+                    <input type="date" id="desde">
+                </div>
+                <div class="campo">
+                    <label for="hasta">Hasta</label>
+                    <input type="date" id="hasta">
+                </div>
+                <button type="button" id="btnGenerar">Generar reporte</button>
+                <button type="button" class="secundario" id="btnCsvVentas">Exportar ventas (CSV)</button>
+                <button type="button" class="secundario" id="btnCsvInventario">Exportar inventario (CSV)</button>
+            </div>
+        </div>
+
+        <div class="indicadores" id="indicadores"></div>
+
+        <div class="tarjeta">
+            <h2>Productos mas vendidos</h2>
+            <div class="tabla-scroll">
+                <table>
+                    <thead>
+                        <tr>
+                            <th class="centro">#</th><th>Producto</th>
+                            <th class="numero">Unidades vendidas</th>
+                            <th class="numero">Importe</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tablaMasVendidos"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="tarjeta">
+            <h2>Detalle de ventas del periodo</h2>
+            <div class="tabla-scroll">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Comprobante</th><th>Fecha</th><th>Cajero</th><th>Cliente</th>
+                            <th class="numero">Productos</th>
+                            <th class="numero">Subtotal</th>
+                            <th class="numero">IGV</th>
+                            <th class="numero">Total</th>
+                            <th class="centro">Pago</th>
+                            <th class="centro">Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tablaVentas"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="tarjeta">
+            <h2>Situacion del inventario</h2>
+            <div class="tabla-scroll">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Codigo</th><th>Producto</th><th>Categoria</th>
+                            <th class="numero">P. venta</th>
+                            <th class="numero">Stock</th>
+                            <th class="numero">Minimo</th>
+                            <th class="centro">Alerta</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tablaInventario"></tbody>
+                </table>
+            </div>
+        </div>
+
+    </main>
+</div>
+<script src="../js/api.js"></script>
+<script src="../js/app.js"></script>
+<script src="../js/reportes.js"></script>
+</body>
+</html>

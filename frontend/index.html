@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<!--
+    Proyecto      : Sistema Web de Ventas e Inventario - Bodega Armando Tornero
+-->
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Juan Cesar Retuerto Ibanez">
+    <meta name="description" content="Inicio de sesion del sistema web de ventas e inventario de la Bodega Armando Tornero.">
+    <title>Iniciar sesion - Bodega Armando Tornero</title>
+    <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body class="pantalla-login">
+
+    <form class="tarjeta-login" id="formLogin" autocomplete="off">
+        <div class="marca">
+            <div class="logo">BA</div>
+            <h1>Bodega Armando Tornero</h1>
+            <p class="sub">Sistema de ventas e inventario</p>
+        </div>
+
+        <div class="mensaje" id="mensaje"></div>
+
+        <div class="campo" style="margin-bottom:14px;">
+            <label for="username">Usuario</label>
+            <input type="text" id="username" name="username" required autofocus>
+        </div>
+
+        <div class="campo" style="margin-bottom:18px;">
+            <label for="password">Contrasena</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+
+        <button type="submit" id="btnIngresar" style="width:100%;">Ingresar</button>
+
+    </form>
+
+    <script src="js/api.js"></script>
+    <script>
+        /* Si ya existe una sesion activa se continua al panel principal. */
+        Api.get("/api/auth/sesion")
+            .then(() => window.location.href = "pages/panel.html")
+            .catch(() => { /* No hay sesion: se muestra el formulario. */ });
+
+        document.getElementById("formLogin").addEventListener("submit", async (evento) => {
+            evento.preventDefault();
+            Mensaje.ocultar();
+
+            const boton = document.getElementById("btnIngresar");
+            boton.disabled = true;
+            boton.textContent = "Validando...";
+
+            try {
+                const respuesta = await Api.post("/api/auth/login", {
+                    username: document.getElementById("username").value.trim(),
+                    password: document.getElementById("password").value
+                });
+                Mensaje.exito(respuesta.mensaje);
+                window.location.href = "pages/panel.html";
+            } catch (error) {
+                Mensaje.error(error.message);
+                document.getElementById("password").value = "";
+            } finally {
+                boton.disabled = false;
+                boton.textContent = "Ingresar";
+            }
+        });
+    </script>
+</body>
+</html>

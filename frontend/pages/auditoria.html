@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<!--
+    Proyecto      : Sistema Web de Ventas e Inventario - Bodega Armando Tornero
+    Archivo       : auditoria.html
+    Descripcion   : Bitacora de auditoria del sistema con filtros por fecha, usuario, accion y modulo.
+    Autor         : Juan Cesar Retuerto Ibanez
+    Creado por    : Juan Cesar Retuerto Ibanez
+    Ultima modificacion : Juan Cesar Retuerto Ibanez
+-->
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Juan Cesar Retuerto Ibanez">
+    <meta name="description" content="Bitacora de auditoria del sistema con filtros por fecha, usuario, accion y modulo.">
+    <title>Bitacora de auditoria - Bodega Armando Tornero</title>
+    <link rel="stylesheet" href="../css/estilos.css">
+</head>
+<body>
+<div class="contenedor">
+    <aside class="barra-lateral"></aside>
+    <main class="contenido">
+        <div class="encabezado">
+            <div>
+                <h1>Bitacora de auditoria</h1>
+                <p>Historial de todas las operaciones del sistema: quien, que, cuando y desde donde</p>
+            </div>
+            <div class="acciones" style="margin-top:0;"></div>
+        </div>
+
+        <div class="mensaje" id="mensaje"></div>
+
+        <div class="tarjeta">
+            <h2>Filtros del historial</h2>
+            <div class="filtros">
+                <div class="campo">
+                    <label for="desde">Desde</label>
+                    <input type="date" id="desde">
+                </div>
+                <div class="campo">
+                    <label for="hasta">Hasta</label>
+                    <input type="date" id="hasta">
+                </div>
+                <div class="campo">
+                    <label for="usuario">Usuario</label>
+                    <select id="usuario"><option value="">Todos</option></select>
+                </div>
+                <div class="campo">
+                    <label for="accion">Accion</label>
+                    <select id="accion"><option value="">Todas</option></select>
+                </div>
+                <div class="campo">
+                    <label for="entidad">Modulo</label>
+                    <select id="entidad"><option value="">Todos</option></select>
+                </div>
+                <button type="button" id="btnFiltrar">Filtrar</button>
+                <button type="button" class="secundario" id="btnLimpiar">Limpiar</button>
+                <button type="button" class="secundario" id="btnCsv">Exportar CSV</button>
+            </div>
+        </div>
+
+        <div class="tarjeta">
+            <h2>Operaciones por accion en el periodo</h2>
+            <div id="resumenAcciones" class="indicadores" style="margin-bottom:0;"></div>
+        </div>
+
+        <div class="tarjeta">
+            <h2>Registro de operaciones</h2>
+            <div class="tabla-scroll">
+                <table>
+                    <thead>
+                        <tr>
+                            <th class="centro">#</th>
+                            <th>Fecha y hora</th><th>Usuario</th><th>Rol</th>
+                            <th class="centro">Accion</th>
+                            <th>Modulo</th>
+                            <th class="centro">Registro</th>
+                            <th>Descripcion</th>
+                            <th>Valor anterior</th>
+                            <th>Valor nuevo</th>
+                            <th>IP</th>
+                            <th class="centro">Resultado</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tablaAuditoria"></tbody>
+                </table>
+            </div>
+            <div class="paginacion">
+                <span id="infoPaginas">-</span>
+                <div class="acciones" style="margin:0;">
+                    <button type="button" class="secundario pequeno" id="btnAnterior">Anterior</button>
+                    <button type="button" class="secundario pequeno" id="btnSiguiente">Siguiente</button>
+                </div>
+            </div>
+        </div>
+
+    </main>
+</div>
+<script src="../js/api.js"></script>
+<script src="../js/app.js"></script>
+<script src="../js/auditoria.js"></script>
+</body>
+</html>

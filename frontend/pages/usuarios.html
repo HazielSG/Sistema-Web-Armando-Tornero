@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<!--
+    Proyecto      : Sistema Web de Ventas e Inventario - Bodega Armando Tornero
+    Archivo       : usuarios.html
+    Descripcion   : Gestion de usuarios: registrar cuentas, asignar roles, desactivar y restablecer contrasenas.
+    Autor         : Juan Cesar Retuerto Ibanez
+    Creado por    : Juan Cesar Retuerto Ibanez
+    Ultima modificacion : Juan Cesar Retuerto Ibanez
+-->
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Juan Cesar Retuerto Ibanez">
+    <meta name="description" content="Gestion de usuarios: registrar cuentas, asignar roles, desactivar y restablecer contrasenas.">
+    <title>Gestion de usuarios - Bodega Armando Tornero</title>
+    <link rel="stylesheet" href="../css/estilos.css">
+</head>
+<body>
+<div class="contenedor">
+    <aside class="barra-lateral"></aside>
+    <main class="contenido">
+        <div class="encabezado">
+            <div>
+                <h1>Gestion de usuarios</h1>
+                <p>Cuentas de acceso, roles y restablecimiento de contrasenas</p>
+            </div>
+            <div class="acciones" style="margin-top:0;"></div>
+        </div>
+
+        <div class="mensaje" id="mensaje"></div>
+
+        <div class="tarjeta">
+            <h2 id="tituloFormulario">Registrar usuario</h2>
+            <form id="formUsuario" class="formulario" autocomplete="off">
+                <input type="hidden" id="idUsuario">
+                <div class="campo">
+                    <label for="username">Nombre de usuario *</label>
+                    <input type="text" id="username" minlength="4" maxlength="50" required>
+                </div>
+                <div class="campo">
+                    <label for="password" id="etiquetaPassword">Contrasena *</label>
+                    <input type="password" id="password" minlength="6" maxlength="60">
+                </div>
+                <div class="campo">
+                    <label for="nombres">Nombres *</label>
+                    <input type="text" id="nombres" maxlength="100" required>
+                </div>
+                <div class="campo">
+                    <label for="apellidos">Apellidos *</label>
+                    <input type="text" id="apellidos" maxlength="100" required>
+                </div>
+                <div class="campo">
+                    <label for="documento">DNI</label>
+                    <input type="text" id="documento" maxlength="15">
+                </div>
+                <div class="campo">
+                    <label for="email">Correo electronico</label>
+                    <input type="email" id="email" maxlength="120">
+                </div>
+                <div class="campo">
+                    <label for="telefono">Telefono</label>
+                    <input type="text" id="telefono" maxlength="20">
+                </div>
+                <div class="campo">
+                    <label for="rol">Rol *</label>
+                    <select id="rol" required>
+                        <option value="ADMINISTRADOR">Administrador</option>
+                        <option value="ALMACENERO">Almacenero</option>
+                        <option value="CAJERO">Cajero</option>
+                    </select>
+                </div>
+                <div class="acciones completo">
+                    <button type="submit" id="btnGuardar">Guardar usuario</button>
+                    <button type="button" class="secundario" id="btnCancelar">Limpiar formulario</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="tarjeta">
+            <h2>Cuentas registradas</h2>
+            <div class="tabla-scroll">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Usuario</th><th>Nombre completo</th><th>Rol</th>
+                            <th>Correo</th><th>Ultimo acceso</th>
+                            <th class="centro">Estado</th>
+                            <th class="centro">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tablaUsuarios"></tbody>
+                </table>
+            </div>
+        </div>
+
+    </main>
+</div>
+<script src="../js/api.js"></script>
+<script src="../js/app.js"></script>
+<script src="../js/usuarios.js"></script>
+</body>
+</html>

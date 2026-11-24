@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<!--
+    Proyecto      : Sistema Web de Ventas e Inventario - Bodega Armando Tornero
+    Archivo       : ventas.html
+    Descripcion   : Registro de ventas: seleccionar productos, calcular el importe y registrar el pago.
+    Autor         : Juan Cesar Retuerto Ibanez
+    Creado por    : Juan Cesar Retuerto Ibanez
+    Ultima modificacion : Juan Cesar Retuerto Ibanez
+-->
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Juan Cesar Retuerto Ibanez">
+    <meta name="description" content="Registro de ventas: seleccionar productos, calcular el importe y registrar el pago.">
+    <title>Registrar venta - Bodega Armando Tornero</title>
+    <link rel="stylesheet" href="../css/estilos.css">
+</head>
+<body>
+<div class="contenedor">
+    <aside class="barra-lateral"></aside>
+    <main class="contenido">
+        <div class="encabezado">
+            <div>
+                <h1>Registrar venta</h1>
+                <p>Seleccion de productos, calculo del importe y registro del pago</p>
+            </div>
+            <div class="acciones" style="margin-top:0;"></div>
+        </div>
+
+        <div class="mensaje" id="mensaje"></div>
+
+        <div class="tarjeta" id="avisoCaja" style="display:none;"></div>
+
+        <div class="venta-columnas">
+            <div>
+                <div class="tarjeta">
+                    <h2>Agregar productos</h2>
+                    <div class="filtros">
+                        <div class="campo" style="flex:1;min-width:220px;">
+                            <label for="buscar">Buscar producto por codigo o nombre</label>
+                            <input type="text" id="buscar" placeholder="Ej.: PRD-0005 o Inca Kola">
+                        </div>
+                        <div class="campo" style="max-width:120px;">
+                            <label for="cantidad">Cantidad</label>
+                            <input type="number" id="cantidad" min="1" value="1">
+                        </div>
+                        <button type="button" id="btnAgregar">Agregar</button>
+                    </div>
+                    <div class="tabla-scroll" style="margin-top:14px;">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Codigo</th><th>Producto</th>
+                                    <th class="numero">Precio</th>
+                                    <th class="numero">Stock</th>
+                                    <th class="centro">Accion</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tablaCatalogo"></tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="tarjeta">
+                    <h2>Detalle de la venta</h2>
+                    <div class="tabla-scroll">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Producto</th>
+                                    <th class="numero">Cantidad</th>
+                                    <th class="numero">P. unitario</th>
+                                    <th class="numero">Subtotal</th>
+                                    <th class="centro">Quitar</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tablaDetalle"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tarjeta resumen-venta">
+                <h2>Pago y confirmacion</h2>
+                <form id="formVenta" autocomplete="off">
+                    <div class="campo" style="margin-bottom:12px;">
+                        <label for="clienteNombre">Cliente</label>
+                        <input type="text" id="clienteNombre" maxlength="150" placeholder="Cliente varios">
+                    </div>
+                    <div class="campo" style="margin-bottom:12px;">
+                        <label for="clienteDocumento">DNI / RUC</label>
+                        <input type="text" id="clienteDocumento" maxlength="15">
+                    </div>
+                    <div class="campo" style="margin-bottom:12px;">
+                        <label for="metodoPago">Metodo de pago *</label>
+                        <select id="metodoPago">
+                            <option value="EFECTIVO">Efectivo</option>
+                            <option value="YAPE">Yape</option>
+                            <option value="PLIN">Plin</option>
+                            <option value="TARJETA">Tarjeta</option>
+                            <option value="TRANSFERENCIA">Transferencia</option>
+                        </select>
+                    </div>
+                    <div class="campo" id="campoRecibido" style="margin-bottom:12px;">
+                        <label for="montoRecibido">Monto recibido (S/)</label>
+                        <input type="number" id="montoRecibido" step="0.10" min="0">
+                    </div>
+
+                    <div class="separador"></div>
+                    <div class="linea"><span>Valor de venta</span><span id="lblSubtotal">S/ 0.00</span></div>
+                    <div class="linea"><span>IGV (18 %)</span><span id="lblIgv">S/ 0.00</span></div>
+                    <div class="linea"><span>Vuelto</span><span id="lblVuelto">S/ 0.00</span></div>
+                    <div class="linea total"><span>Total</span><span id="lblTotal">S/ 0.00</span></div>
+
+                    <div class="acciones">
+                        <button type="submit" id="btnConfirmar" disabled>Confirmar venta</button>
+                        <button type="button" class="secundario" id="btnVaciar">Vaciar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </main>
+</div>
+<script src="../js/api.js"></script>
+<script src="../js/app.js"></script>
+<script src="../js/ventas.js"></script>
+</body>
+</html>

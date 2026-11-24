@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<!--
+    Proyecto      : Sistema Web de Ventas e Inventario - Bodega Armando Tornero
+    Archivo       : comprobante.html
+    Descripcion   : Comprobante interno de la venta registrada.
+    Autor         : Juan Cesar Retuerto Ibanez
+    Creado por    : Juan Cesar Retuerto Ibanez
+    Ultima modificacion : Juan Cesar Retuerto Ibanez
+-->
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Juan Cesar Retuerto Ibanez">
+    <meta name="description" content="Comprobante interno de la venta registrada.">
+    <title>Comprobante de venta - Bodega Armando Tornero</title>
+    <link rel="stylesheet" href="../css/estilos.css">
+</head>
+<body>
+<div class="contenedor">
+    <aside class="barra-lateral"></aside>
+    <main class="contenido">
+        <div class="encabezado">
+            <div>
+                <h1>Comprobante de venta</h1>
+                <p>Documento interno con los datos de la venta registrada</p>
+            </div>
+            <div class="acciones" style="margin-top:0;"></div>
+        </div>
+
+        <div class="mensaje" id="mensaje"></div>
+
+        <div class="comprobante" id="comprobante"></div>
+        <div class="acciones" style="justify-content:center;">
+            <button type="button" id="btnImprimir">Imprimir</button>
+            <a href="ventas.html"><button type="button" class="secundario">Nueva venta</button></a>
+            <a href="historial.html"><button type="button" class="secundario">Historial</button></a>
+        </div>
+
+    </main>
+</div>
+<script src="../js/api.js"></script>
+<script src="../js/app.js"></script>
+<script src="../js/comprobante.js"></script>
+</body>
+</html>

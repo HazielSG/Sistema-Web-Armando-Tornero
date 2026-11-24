@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<!--
+    Proyecto      : Sistema Web de Ventas e Inventario - Bodega Armando Tornero
+    Archivo       : inventario.html
+    Descripcion   : Control de inventario: registrar entradas y salidas de stock, consultar existencias y revisar alertas.
+    Autor         : Juan Cesar Retuerto Ibanez
+    Creado por    : Juan Cesar Retuerto Ibanez
+    Ultima modificacion : Juan Cesar Retuerto Ibanez
+-->
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Juan Cesar Retuerto Ibanez">
+    <meta name="description" content="Control de inventario: registrar entradas y salidas de stock, consultar existencias y revisar alertas.">
+    <title>Control de inventario - Bodega Armando Tornero</title>
+    <link rel="stylesheet" href="../css/estilos.css">
+</head>
+<body>
+<div class="contenedor">
+    <aside class="barra-lateral"></aside>
+    <main class="contenido">
+        <div class="encabezado">
+            <div>
+                <h1>Control de inventario</h1>
+                <p>Registro de entradas, salidas y ajustes de stock con el responsable de cada movimiento</p>
+            </div>
+            <div class="acciones" style="margin-top:0;"></div>
+        </div>
+
+        <div class="mensaje" id="mensaje"></div>
+
+        <div class="indicadores" id="indicadores"></div>
+
+        <div class="tarjeta" id="tarjetaMovimiento">
+            <h2>Registrar movimiento de inventario</h2>
+            <form id="formMovimiento" class="formulario" autocomplete="off">
+                <div class="campo">
+                    <label for="idProducto">Producto *</label>
+                    <select id="idProducto" required></select>
+                </div>
+                <div class="campo">
+                    <label for="tipo">Tipo de movimiento *</label>
+                    <select id="tipo" required>
+                        <option value="ENTRADA">Entrada (ingreso de mercaderia)</option>
+                        <option value="SALIDA">Salida (merma, consumo, devolucion)</option>
+                        <option value="AJUSTE">Ajuste (inventario fisico)</option>
+                    </select>
+                </div>
+                <div class="campo">
+                    <label for="cantidad" id="etiquetaCantidad">Cantidad *</label>
+                    <input type="number" id="cantidad" min="1" required>
+                </div>
+                <div class="campo">
+                    <label for="stockActual">Stock actual</label>
+                    <input type="text" id="stockActual" readonly value="-">
+                </div>
+                <div class="campo completo">
+                    <label for="motivo">Motivo *</label>
+                    <input type="text" id="motivo" maxlength="150" required
+                           placeholder="Ej.: Compra a Distribuidora Comas, guia 001-245">
+                </div>
+                <div class="campo">
+                    <label for="referencia">Referencia / documento</label>
+                    <input type="text" id="referencia" maxlength="50" placeholder="Ej.: GR-001-245">
+                </div>
+                <div class="acciones completo">
+                    <button type="submit" id="btnRegistrar">Registrar movimiento</button>
+                    <button type="button" class="secundario" id="btnLimpiar">Limpiar</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="tarjeta">
+            <h2>Existencias del catalogo</h2>
+            <div class="tabla-scroll">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Codigo</th><th>Producto</th><th>Categoria</th><th>Unidad</th>
+                            <th class="numero">Stock</th><th class="numero">Minimo</th>
+                            <th class="centro">Alerta</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tablaExistencias"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="tarjeta">
+            <h2>Movimientos registrados</h2>
+            <div class="filtros" style="margin-bottom:16px;">
+                <div class="campo">
+                    <label for="desde">Desde</label>
+                    <input type="date" id="desde">
+                </div>
+                <div class="campo">
+                    <label for="hasta">Hasta</label>
+                    <input type="date" id="hasta">
+                </div>
+                <button type="button" id="btnFiltrar">Filtrar</button>
+                <button type="button" class="secundario" id="btnUltimos">Ultimos 50</button>
+            </div>
+            <div class="tabla-scroll">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Fecha</th><th>Producto</th><th class="centro">Tipo</th>
+                            <th class="numero">Cantidad</th>
+                            <th class="numero">Stock anterior</th>
+                            <th class="numero">Stock resultante</th>
+                            <th>Motivo</th><th>Responsable</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tablaMovimientos"></tbody>
+                </table>
+            </div>
+        </div>
+
+    </main>
+</div>
+<script src="../js/api.js"></script>
+<script src="../js/app.js"></script>
+<script src="../js/inventario.js"></script>
+</body>
+</html>
